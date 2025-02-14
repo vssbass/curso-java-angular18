@@ -1,0 +1,53 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Gestión de Horario</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Locales</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gestión de Horario</li>
+                </ol>
+            </div>
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::App Content Header-->
+
+<div class="container-fluid">
+    <!--begin::Row-->
+    <div class="row">
+        
+
+            <div *ngFor="let group of listHorario" class="fecha-group">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h2>{{ group.fecha }}</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="horarios">
+                                <div *ngFor="let horario of group.horarios" class="horario-card">
+                                    <span>{{ horario.hora }}  </span>
+                                    <span [ngClass]="horario.estado ? 'disponible' : 'ocupado'">
+                                        {{ horario.estado ? 'Disponible' : 'Ocupado' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.btn{
+    background-color: #00A499;
+    border-color: #00A499;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #00A499;
+    border-color: #00A499;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}

@@ -1,0 +1,35 @@
+<div class="login-page bg-body-secondary app-loaded">
+    <div class="login-box">
+        <div class="login-logo">
+            <!-- <b>Admin</b>LTE -->
+            <img src="https://www.eyesillusion.com/img/logo-1655315866.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Iniciar Sesión</p>
+                <form (submit)="login()">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="userName" name="userName" required />
+                        <div class="input-group-text"><span class="bi bi-person"></span></div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
+                        <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+                    </div>
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Acceder</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+</div>

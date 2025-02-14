@@ -1,0 +1,12 @@
+.nav-treeview {
+    display: none; /* Ocultar por defecto */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    max-height: 0;
+  }
+  
+  .nav-treeview.show {
+    display: block !important; /* Forzar visibilidad */
+    max-height: 500px; /* Ajustar según contenido */
+  }
+  

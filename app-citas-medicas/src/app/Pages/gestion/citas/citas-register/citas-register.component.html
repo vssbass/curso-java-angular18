@@ -1,0 +1,183 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Registrar Cita</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Citas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrar Cita</li>
+                </ol>
+            </div>
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::App Content Header-->
+
+<!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row g-1">
+            <!--begin::Col-->
+            <div class="col-md-8 col-sm-12">
+                <!--begin::Form Validation-->
+                <div class="card card-info card-outline mb-4">
+                    <!--begin::Header-->
+                    <div class="card-header">
+                        <div class="card-title">Datos del Cliente</div>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Form-->
+                    <form [formGroup]="citaForm" (ngSubmit)="registrarCita($event)" class="needs-validation" novalidate>
+
+                        <div class="card-body">
+                            <div class="row g-3">
+
+                                <!-- Nombres -->
+                                <div class="col-md-6">
+                                    <label for="inputNombresCliente" class="form-label">Nombres y Apellidos</label>
+                                    <input type="text" class="form-control" id="inputNombresCliente"
+                                        formControlName="inputNombresCliente"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputNombresCliente')}" />
+                                    <div class="invalid-feedback">{{ getFieldError('inputNombresCliente') }}</div>
+                                </div>
+
+                                <!-- DNI -->
+                                <div class="col-md-6">
+                                    <label for="inputDniCliente" class="form-label">DNI</label>
+                                    <input type="text" class="form-control" id="inputDniCliente"
+                                        formControlName="inputDniCliente"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputDniCliente')}" />
+                                    <div class="invalid-feedback">{{ getFieldError('inputDniCliente') }}</div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label for="inputEmailCliente" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="inputEmailCliente"
+                                        formControlName="inputEmailCliente"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputEmailCliente')}" />
+                                    <div class="invalid-feedback">{{ getFieldError('inputEmailCliente') }}</div>
+                                </div>
+
+                                <!-- Celular -->
+                                <div class="col-md-6">
+                                    <label for="inputCelularCliente" class="form-label">Celular</label>
+                                    <input type="text" class="form-control" id="inputCelularCliente"
+                                        formControlName="inputCelularCliente" placeholder="9xxxxxxxx"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputCelularCliente')}" />
+                                    <div class="invalid-feedback">{{ getFieldError('inputCelularCliente') }}</div>
+                                </div>
+
+                                <!-- Local -->
+                                <div class="col-md-6">
+                                    <label for="inputLocalCita" class="form-label">Locales</label>
+                                    <select class="form-select" id="inputLocalCita" formControlName="inputLocalCita"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputLocalCita')}">
+                                        <option selected disabled value="">Seleccione...</option>
+                                        <option *ngFor="let item of getlocales" [value]="item.id">{{ item.descripcion }}
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">{{ getFieldError('inputLocalCita') }}</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Motivo</label>
+                                    <select class="form-select" formControlName="inputMotivoCita"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputMotivoCita')}">
+                                        <option selected disabled value="">Seleccione...</option>
+                                        <option *ngFor="let item of getMotivos" [value]="item.id">{{ item.descripcion }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isInvalidField('inputMotivoCita')" class="invalid-feedback">Seleccione
+                                        un motivo!</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" formControlName="inputDateCita"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputDateCita')}"
+                                        (change)="getHorarioCombo($event)" />
+                                    <div *ngIf="isInvalidField('inputDateCita')" class="invalid-feedback">Seleccione una
+                                        fecha!</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Hora</label>
+                                    <select class="form-select" formControlName="inputHoraCita"
+                                        [ngClass]="{'is-invalid': isInvalidField('inputHoraCita')}">
+                                        <option selected value="">Seleccione...</option>
+                                        <option *ngFor="let item of getHorario" [value]="item.hora">{{ item.hora }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isInvalidField('inputHoraCita')" class="invalid-feedback">Seleccione un
+                                        horario!</div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Observaciones:</label>
+                                    <textarea class="form-control" formControlName="textObservacionesCita" rows="2"
+                                        [ngClass]="{'is-invalid': isInvalidField('textObservacionesCita')}"></textarea>
+                                    <div *ngIf="isInvalidField('textObservacionesCita')" class="invalid-feedback">
+                                        Ingrese observaciones!</div>
+                                </div>
+
+                                <!-- Botón de Enviar -->
+                                <div class="card-footer">
+                                    <button class="btn btn-info" type="submit" (click)="registrarCita($event)">Guardar Cita</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+
+                    <!--begin::JavaScript-->
+                    <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (() => {
+                            'use strict';
+
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            const forms = document.querySelectorAll('.needs-validation');
+
+                            // Loop over them and prevent submission
+                            Array.from(forms).forEach((form) => {
+                                form.addEventListener(
+                                    'submit',
+                                    (event) => {
+                                        if (!form.checkValidity()) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+
+                                        form.classList.add('was-validated');
+                                    },
+                                    false,
+                                );
+                            });
+                        })();
+                    </script>
+                    <!--end::JavaScript-->
+                </div>
+                <!--end::Form Validation-->
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Container-->
+</div>
+<div *ngIf="loadingGift" class="loading-overlay">
+    <div class="loading-spinner">
+        <img src="../../../../../assets/adminlte/assets/img/loading.gif" alt="Cargando...">
+    </div>
+</div>
+<!--end::App Content-->

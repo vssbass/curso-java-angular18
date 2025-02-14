@@ -1,0 +1,27 @@
+
+<!--begin::App Wrapper-->
+<div class="app-wrapper">
+    <!--begin::Header-->
+    <!-- <nav class="app-header navbar navbar-expand bg-body"> -->
+    <app-header>
+
+    </app-header>
+    <!-- </nav> -->
+    <!--end::Header-->
+    <!--begin::Sidebar-->
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+        <app-sidebar></app-sidebar>
+    </aside>
+    <!--end::Sidebar-->
+    <!--begin::App Main-->
+    <main class="app-main">
+        <router-outlet></router-outlet>
+    </main>
+    <!--end::App Main-->
+    <!--begin::Footer-->
+    <footer class="app-footer">
+        <app-footer></app-footer>
+    </footer>
+    <!--end::Footer-->
+</div>
+<!--end::App Wrapper-->

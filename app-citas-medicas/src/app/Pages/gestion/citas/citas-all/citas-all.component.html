@@ -1,0 +1,151 @@
+<!--begin::App Content Header-->
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Gestión de Citas</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Citas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gestión de Citas</li>
+                </ol>
+            </div>
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::App Content Header-->
+
+<div class="container-fluid">
+    <!--begin::Row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de Citas</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Código</th>
+                                <th>Documento</th>
+                                <th>Nombres</th>
+                                <th>Email</th>
+                                <th>Celular</th>
+                                <th>Estado</th>
+                                <th [colSpan]="2">Acciones</th>
+                                <!-- <th>Observaciones</th>
+                                <th>Hora Cita</th>
+                                <th>Fecha Cita</th>
+                                <th>Local</th>
+                                <th>Motivo</th>
+                                <th>Creador</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let cita of listCitas; let i = index">
+                                <tr class="align-middle">
+                                    <td>{{ cita?.id }}</td>
+                                    <td>{{ cita?.codigo }}</td>
+                                    <td>{{ cita?.documento }}</td>
+                                    <td>{{ cita?.nombres }}</td>
+                                    <td>{{ cita?.email }}</td>
+                                    <td>{{ cita?.celular }}</td>
+                                    <td>
+                                        <span
+                                            [ngClass]="cita?.estado ? 'badge text-bg-success' : 'badge text-bg-danger'">
+                                            {{ cita?.estado ? 'Activo' : 'Inactivo' }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+                                            <button class="btn btn-warning btn-sm" (click)="editarCita(cita.id)">
+                                                Editar Cita
+                                            </button>
+                                            <button class="btn btn-primary btn-sm" (click)="toggleDetails(i)">
+                                                {{ expandedIndex === i ? 'Ocultar' : 'Ver Más' }}
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr *ngIf="expandedIndex === i">
+                                    <td colspan="8">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Observaciones</th>
+                                                    <th>Hora Cita</th>
+                                                    <th>Fecha Cita</th>
+                                                    <th>Local</th>
+                                                    <th>Motivo</th>
+                                                    <th>Creador</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ cita?.observaciones }}</td>
+                                                    <td>{{ cita?.horacita }}</td>
+                                                    <td>{{ cita?.fechacita }}</td>
+                                                    <td>
+                                                        <p *ngIf="cita?.locales">
+                                                            {{ cita.locales.descripcion }} ({{cita.locales.direccion }})
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p *ngIf="cita?.motivo">{{ cita.motivo.descripcion }}</p>
+                                                    </td>
+                                                    <td>{{ cita?.creador }}</td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            
+                                        </table>
+                                    </td>
+
+                                    <!-- <td colspan="9">
+                                    <div class="card p-3">
+                                        <p><strong>Observaciones:</strong> {{ cita?.observaciones }}</p>
+                                        <p><strong>Hora Cita:</strong> {{ cita?.horacita }}</p>
+                                        <p><strong>Fecha Cita:</strong> {{ cita?.fechacita }}</p>
+                                        <p *ngIf="cita?.locales">
+                                            <strong>Local:</strong> {{ cita.locales.descripcion }} ({{
+                                            cita.locales.direccion }})
+                                        </p>
+                                        <p *ngIf="cita?.motivo">
+                                            <strong>Motivo:</strong> {{ cita.motivo.descripcion }}
+                                        </p>
+                                        <p><strong>Creador:</strong> {{ cita?.creador }}</p>
+                                    </div>
+                                </td> -->
+                                </tr>
+                            </ng-container>
+                        </tbody>
+
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-end">
+                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--end::Row-->
+</div>
